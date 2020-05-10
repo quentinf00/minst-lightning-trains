@@ -1,5 +1,5 @@
 """
-This file defines the core research contribution   
+This file defines the core research contribution
 """
 import os
 import torch
@@ -47,28 +47,8 @@ class CoolSystem(pl.LightningModule):
 
     def train_dataloader(self):
         # REQUIRED
-        return DataLoader(MNIST(os.getcwd(), train=True, download=True, transform=transforms.ToTensor()), batch_size=self.hparams.batch_size)
+        return DataLoader(MNIST(self.hparams.data.folder, train=True, download=True, transform=transforms.ToTensor()), batch_size=self.hparams.batch_size)
 
     def val_dataloader(self):
         # OPTIONAL
-        return DataLoader(MNIST(os.getcwd(), train=True, download=True, transform=transforms.ToTensor()), batch_size=self.hparams.batch_size)
-
-    def test_dataloader(self):
-        # OPTIONAL
-        return DataLoader(MNIST(os.getcwd(), train=True, download=True, transform=transforms.ToTensor()), batch_size=self.hparams.batch_size)
-
-    @staticmethod
-    def add_model_specific_args(parent_parser):
-        """
-        Specify the hyperparams for this LightningModule
-        """
-        # MODEL specific
-        parser = ArgumentParser(parents=[parent_parser])
-        parser.add_argument('--learning_rate', default=0.02, type=float)
-        parser.add_argument('--batch_size', default=32, type=int)
-
-        # training specific (for this model)
-        parser.add_argument('--max_nb_epochs', default=2, type=int)
-
-        return parser
-
+        return DataLoader(MNIST(self.hparams.data.folder, train=True, download=True, transform=transforms.ToTensor()), batch_size=self.hparams.batch_size)

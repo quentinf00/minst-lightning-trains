@@ -1,0 +1,6 @@
+logger:
+  class: pytorch_lightning.loggers.TrainsLogger
+  params:
+    project_name: 'pytorch lightning'
+    task_name: 'hydra'
+    output_uri: '~/data/outputs'
